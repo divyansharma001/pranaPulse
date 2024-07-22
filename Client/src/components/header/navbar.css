@@ -1,0 +1,22 @@
+.underline-animate {
+    position: relative;
+  }
+  
+  .underline-animate::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px; /* Adjust the height as needed */
+    bottom: -1px;
+    left: 0;
+    background-color: #000; /* Change the color as needed */
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .underline-animate:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  

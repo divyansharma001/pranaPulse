@@ -1,13 +1,17 @@
-import React from "react";
+import Front from "./components/Body/Front";
+import Footer from "./components/footer/Footer";
+import NavBar from "./components/header/NavBar";
 
-const App = () =>{
-return(
-  <> 
- <h1 className="text-3xl font-bold underline">
-      Build here niggas
-    </h1>
-  </>
-)
+
+function App() {
+  return (
+    <>
+      <NavBar/>
+      <Front/>
+      <Footer/>
+      
+    </>
+  );
 }
 
 export default App;
