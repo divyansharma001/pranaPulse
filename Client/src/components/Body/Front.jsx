@@ -21,42 +21,19 @@ const Front = () => {
           <img src="img1.png" className="md:w-[350px] w-60 z-0"></img>
         </div>
       </div>
-      <div className="p-4 md:p-8 bg-gray-100 ">
-        <h2 className="text-center text-2xl md:text-4xl font-bold mb-6 mt-20">Embrace Serenity</h2>
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-4">
-          <img
-            src="https://images.shiksha.com/mediadata/images/articles/1689079450php3qZVMP.jpeg"
-            alt="Yoga Pose 1"
-            className="sm:w-[400px] sm:ml-72 sm:h-[300px] rounded-lg transition-transform duration-300 transform hover:scale-105 hover:brightness-75 object-cover"
-          />
-          <img
-            src="https://saradavedanta.org/wp-content/uploads/2020/09/yoga-3426151_1920.jpg"
-            alt="Yoga Pose 2"
-            className="sm:w-[400px] sm:h-[300px] h-[95px] w-full rounded-lg transition-transform duration-300 transform hover:scale-105 hover:brightness-75 object-cover"
-          />
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi-aC5TkgyClF-XUvzF8cPoUWnT6ufDq4ZkCkSn-D5YJHfV-mK1H8PW-WctfHTc_Ac4D4&usqp=CAU"
-            alt="Yoga Pose 3"
-            className="sm:w-[400px] sm:ml-72 sm:h-[300px] h-[87px] rounded-lg transition-transform duration-300 transform hover:scale-105 hover:brightness-75 object-cover"
-          />
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYAwtcV7oulDb6qHy8W6IlKSw50HwbY3gu6aGKiN7cEcu8i_YJKLMjItXVp7eyIfQuGA0&usqp=CAU"
-            alt="Yoga Pose 4"
-            className="sm:w-[400px] sm:h-[300px] rounded-lg transition-transform duration-300 transform hover:scale-105 hover:brightness-75 object-cover"
-          />
-        </div>
-      </div>
+      
 
 
 
 
       <div className="p-4 mb-2 md:p-8 bg-gray-100 ">
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center h-screen mt-56">
           <div className="w-full max-w-xxl p-4 mb-96 border-2 border-[#0584AB] bg-[#0584AB] mt-20 rounded-lg">
             <h1 className="text-5xl font-bold text-center mb-6 mt-10 text-white">Ask Prana</h1>
+            <h2 className="text-xl sm:text4xl font-lighter text-center mb-6 mt-10 text-white">Share Your Health Challenges and Concerns, and Let Our AI Guide You to Tailored Yoga Solutions That Perfectly Fit Your Needs</h2>
             <div className="relative">
               <textarea
-                className="w-full p-3 border-2 border-[#0584AB] mb-20 rounded-lg resize-none focus:outline-none focus:border-blue-500"
+                className="w-full sm:h-56 p-3 border-2 border-[#0584AB] mb-20 rounded-lg resize-none focus:outline-none focus:border-blue-500"
                 rows="5"
                 placeholder="Message Prana..."
               ></textarea>
