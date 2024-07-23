@@ -1,12 +1,23 @@
-import express from 'express'
-const app = express()
+import Groq from "groq-sdk";
 
-app.get('/', (req, res)=>{
-res.status(200).send({
-    message: "The backend is working"
-})
-})
+const groq = new Groq({ apiKey: "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"});
 
-app.listen(3000, ()=>{
-    console.log(`Server is running on port 3000`)
-})
+export async function main() {
+  const chatCompletion = await getGroqChatCompletion();
+  // Print the completion returned by the LLM.
+  console.log(chatCompletion.choices[0]?.message?.content || "");
+}
+
+export async function getGroqChatCompletion() {
+  return groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: "Explain the importance of fast language models",
+      },
+    ],
+    model: "llama3-8b-8192",
+  });
+}
+
+main();
