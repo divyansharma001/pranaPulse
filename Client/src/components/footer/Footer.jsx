@@ -1,9 +1,20 @@
-import React from 'react'
+
 
 const footer = () => {
   return (
-    <div className='h-24 w-full bg-[#0584AB] text-white text-center font-semibold text-3xl'></div>
-  )
+    <div className="w-full py-[20px] bg-gradient-to-b from-[#D9DFFE] to-[#EDE8F5] mt-auto " >
+      <div className="flex justify-between items-center  p-2 md:p-4  ">
+        <div className="flex gap-1 items-center text-sm md:text-base ">
+          💓
+          Made with MERN,{<br></br>}Tailwind & Framer Motion
+        </div>
+
+        <div className="flex gap-4 text-2xl md:text-3xl mr-3">
+          <p>Prana<span className="text-[#0884AB]">Pulse</span></p>
+        </div>
+      </div>
+    </div>
+  ) 
 }
 
 export default footer
