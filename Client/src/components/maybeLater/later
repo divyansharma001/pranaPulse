@@ -110,3 +110,36 @@
               <span className="material-icons"></span> High Cholesterol
             </button>
           </div> */}
+
+
+
+<!-- 
+<div className="flex flex-col justify-center">
+  <h1 className="text-4xl text-white font-semibold mb-4">Common Problems</h1>
+  <div className="flex  flex-wrap justify-start max-w-md ">
+    <button
+      className="border-2  border-white bg-white hover:scale-110 duration-500 text-black font-semibold py-1 px-2 mr-4 mb-2 rounded-3xl focus:outline-none"
+      onClick={handleSubmit}
+    >
+      <span className="text sm:text-xl p-0.5 rounded-lg text-black mr-2 ">+</span>Stress
+    </button>
+    <button
+      className="border-2 border-white bg-white hover:scale-110 duration-500 text-black font-semibold py-1 px-2 mr-4 mb-2 rounded-3xl focus:outline-none"
+      onClick={handleSubmit}
+    >
+      <span className="text-xl p-0.5 rounded-lg text-black mr-2">+</span>Anxiety
+    </button>
+    <button
+      className="border-2 border-white bg-white hover:scale-110 duration-500 text-black font-semibold py-1 px-2 mr-4 mb-2 rounded-3xl focus:outline-none"
+      onClick={handleSubmit}
+    >
+      <span className="text-xl p-0.5 rounded-lg text-black mr-2">+</span>Depression
+    </button>
+    <button
+      className="border-2 border-white bg-white hover:scale-110 duration-500 text-black font-semibold py-1 px-2 mr-4 mb-2 rounded-3xl focus:outline-none"
+      onClick={handleSubmit}
+    >
+      <span className="text-xl p-0.5 rounded-lg text-black mr-2">+</span>Burnout
+    </button>
+  </div>
+</div> -->
