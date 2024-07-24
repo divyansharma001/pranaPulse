@@ -40,7 +40,7 @@ const Front = () => {
             </h1>
           <div className="text-4xl md:text-8xl pb-4 md:pb-8 font-semibold  md:pt-10 ">
             <h1><span  className="text-[#0884AB]">Chat</span> With</h1>
-            <h1><span className="text-[#0884AB]">AI</span></h1> 
+            <h1><span className="text-[#0884AB]">Prana</span></h1> 
           </div>
           <div className="md:text-2xl  md:my-24 font-semibold my-7">
             <h1 >
@@ -70,7 +70,7 @@ const Front = () => {
           </div>
         </div>
         <div className="md:ml-0 col-span-1 ml-20 mt-11 hidden md:block pb-6 md:my-16">
-          <img src="" className="md:w-[350px] w-60 z-0" alt="ai image"></img>
+          <img src="" className="md:w-[450px] w-60  ml-44 mt-[-80px] z-0" alt="ai image"></img>
         </div>
        
       </div>  
