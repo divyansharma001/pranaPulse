@@ -1,63 +1,90 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import axios from 'axios';
 import Loader from "../constants/Loader";
 
 const Ai = () => {
-  const [answer, setAnswer] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-  const [height, setHeight] = useState('160vh');
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  const heightSubmit = (event) => {
-    event.stopPropagation(); 
-    setHeight('243vh');
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleSubmit = () => {
-    setLoading(true);
-    // Simulate an API call
-    setTimeout(() => {
-      setLoading(false);
-      setAnswer(true);
-    }, 2000);
+  useEffect(scrollToBottom, [messages]);
+
+  const sendMessage = async () => {
+    if (input.trim() === '' || isLoading) return;
+
+    const newMessages = [...messages, { role: 'user', content: input }];
+    setMessages(newMessages);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/v1/user/chat`, { 
+        userInput: input, 
+        conversationHistory: newMessages 
+      });
+
+      setMessages([
+        ...newMessages, 
+        { role: 'assistant', content: response.data.response }
+      ]);
+    } catch (error) {
+      console.error('Error:', error);
+      setMessages([
+        ...newMessages,
+        { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' }
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
   };
 
   return (
-    <div className="flex justify-center h-auto" style={{ height: height }} onClick={(event) => {
-      if (event.target.tagName === 'BUTTON' && event.target.type === 'submit') {
-        heightSubmit(event);
-      }
-    }}>
+    <div className="flex justify-center h-screen">
       <div className="w-full p-4 bg-[#0584AB] rounded-lg">
-        <h1 className="text-5xl font-bold text-center mb-6 text-[#E0E6F9]">
+        <h1 className="text-5xl font-bold text-center mb-6 text-white">
           Ask Prana
         </h1>
         <div className="relative">
           <textarea
-            className="w-full p-3 border-2 border-[#0584AB] sm:h-72 mb-20 rounded-lg resize-none focus:outline-none focus:border-blue-500 bg-[#E0E6F9]"
+            className="w-full p-3 border-2 border-[#0584AB] mb-20 rounded-lg resize-none focus:outline-none focus:border-blue-500"
             rows="5"
             placeholder="Message Prana..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onClick={handleKeyPress}
+            disabled={isLoading}
           ></textarea>
- 
 
-
-
-          
           <button
-            className="absolute right-2 sm:bottom-2 bottom-[944px] border-2  bg-[#E0E6F9] text-black py-1 px-4 mb-2 rounded-lg  "
-            onClick={handleSubmit}
+            className="absolute right-2 bottom-2 border-2 border-white bg-[#0584AB] text-white py-1 px-4 mb-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
+            onClick={sendMessage}
+            disabled={isLoading}
           >
-            Submit
+            {isLoading ? 'Sending...' : 'Submit'}
           </button>
         </div>
 
-        {/* Conditional rendering for Loader and Answer */}
-        {loading ? (
+        {isLoading ? (
           <Loader />
-        ) : answer ? (
-          <div className="mt-10 w-full h-1/3 p-3 border-2 border-[#0584AB] rounded-lg bg-[#E0E6F9]">
-            This is the answer to your question.
+        ) : messages.length > 0 ? (
+          <div className="mt-10 w-full p-3 border-2 border-[#0584AB] rounded-lg bg-white">
+            {messages.map((message, index) => (
+              <div key={index} className={`mb-4 p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-200' : 'bg-gray-200'}`}>
+                {message.content}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
           </div>
         ) : null}
       </div>
