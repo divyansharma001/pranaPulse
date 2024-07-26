@@ -123,7 +123,7 @@ function YogaChatbot() {
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onClick={handleKeyPress}
           placeholder="Type your message here..."
           disabled={isLoading}
         />
