@@ -7,6 +7,7 @@ import About from "./components/about/About"
 import Ai from "./components/ai/Ai"
 import Error from "./components/common/errorPage/Error"
 import "./index.css"
+import YogaChatbot from "./components/yogaChatbot/YogaChatbot";
 
 
 
@@ -42,6 +43,10 @@ const appRouter = createBrowserRouter([
       {
         path:"/ai",
         element:<Ai/>
+      },
+      {
+        path: '/bot',
+        element: <YogaChatbot/>
       }
     ],
     errorElement:<Error/>
