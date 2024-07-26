@@ -25,11 +25,13 @@ const NavBar = () => {
  
     >
       <div className="cursor-pointer">
+        <Link to={"/"}>
         <img
           src="head.jpg"
           alt="logo"
           className="w-12 md:w-24"
-        />
+          />
+          </Link>
       </div>
 
       <div className="text-3xl absolute right-8 top-7 cursor-pointer md:hidden" onClick={() => setOpen(!open)}>

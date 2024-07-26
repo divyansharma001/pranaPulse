@@ -52,7 +52,7 @@ const Ai = () => {
 
   return (
     <>
-      <div className="flex justify-center h-auto">
+      <div className="flex justify-center h-auto overflow-x-hidden">
         <div className="w-11/12 md:w-9/12 p-4 bg-[#0584AB] rounded-lg flex flex-col h-full max-h-screen">
           <h1 className="text-3xl md:text-5xl font-bold text-center mb-6 text-white">
             Ask Prana
@@ -70,17 +70,17 @@ const Ai = () => {
               <Loader />
             </div>
           )}
-          <div className="relative flex items-center mt-4">
+          <div className="relative flex md:flex-row flex-col items-center  mt-4">
             <input
-              className="flex-grow p-3 border-2 border-[#0584AB] rounded-lg resize-none focus:outline-none focus:border-blue-500"
+              className="flex-grow p-3  rounded-lg resize-none focus:outline-none "
               placeholder="Message Prana..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onClick={handleKeyPress}
               disabled={isLoading}
             />
             <button
-              className="ml-2 border-2 border-white bg-[#0584AB] text-white py-1 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
+              className="ml-2 border-2 md:mt-0 mt-3 border-white bg-[#E0E6F9] text-black py-1 px-4 rounded-lg hover:bg-green-50 "
               onClick={sendMessage}
               disabled={isLoading}
             >
