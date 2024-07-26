@@ -36,55 +36,55 @@ const Front = () => {
 
   return (
     <>
-      <motion.div id="home" className="mb-10 text-white max-w-[1320px] mx-auto md:grid grid-cols-2 md:my-10 my-7">
-        <motion.div
-          className="col-span-1 text-center md:text-start"
-          variants={fadeInUpAnimation}
-          initial="hidden"
-          animate="show"
-        >
-          <div className="text-4xl md:text-8xl pb-4 md:pb-8 font-semibold md:pt-10">
-            <motion.h1 variants={fadeInUpAnimation}>Anytime, Any</motion.h1>
-            <motion.h1 variants={fadeInUpAnimation}>Place, Any</motion.h1>
-            <motion.h1 variants={fadeInUpAnimation}>Asanas</motion.h1>
-          </div>
+   <motion.div id="home" className=" mb-10 text-white max-w-[1320px] mx-auto flex flex-col md:flex-row md:my-5 ">
+  <motion.div
+    className="col-span-1 text-center md:text-start md:order-1 order-2 mt-0 md:mt-10"
+    variants={fadeInUpAnimation}
+    initial="hidden"
+    animate="show"
+  >
+    <div className="mt-10 md:mt-0 text-4xl md:text-8xl pb-4 md:pb-8 font-semibold md:pt-10">
+      <motion.h1 variants={fadeInUpAnimation}>Anytime, Any</motion.h1>
+      <motion.h1 variants={fadeInUpAnimation}>Place, Any</motion.h1>
+      <motion.h1 variants={fadeInUpAnimation}>Asanas</motion.h1>
+    </div>
+    <motion.h1
+      variants={fadeInUpAnimation}
+      initial="hidden"
+      animate="show"
+      className="md:text-xl"
+    >
+      Take your routine at any time of your day, with the power of yoga
+      and with the AI who will guide you.
+    </motion.h1>
+  </motion.div>
 
-          <motion.h1
-            variants={fadeInUpAnimation}
-            initial="hidden"
-            animate="show"
-            className="md:text-xl"
-          >
-            Take your routine at any time of your day, with the power of yoga
-            and with the AI who will guide you.
-          </motion.h1>
-        </motion.div>
+  <div className="col-span-1 flex justify-center items-center mt-8 md:mt-0 md:order-2 order-1">
+    <motion.img
+      src="img1.png"
+      className="md:w-[350px] w-60"
+      animate={{
+        y: [0, -30, 0],
+      }}
+      transition={{
+        duration: 3,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatType: "loop",
+      }}
+    />
+  </div>
+</motion.div>
 
-        <div className="col-span-1 flex justify-center items-center mt-8 md:mt-0">
-          <motion.img
-            src="img1.png"
-            className="md:w-[350px] w-60"
-            animate={{
-              y: [0, -30, 0],
-            }}
-            transition={{
-              duration: 3,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
-          ></motion.img>
-        </div>
-      </motion.div>
 
       {/* Ai image */}
       <motion.div
         ref={firstRef}
         style={{ scale: scaleProgressFirst, opacity: opacityProgressFirst }}
-        className="w-full bg-[#E0E6F9] md:my-20 rounded-2xl"
+        className="w-full bg-[#E0E6F9] md:my-20 rounded-2xl mt-0 md:mt-10 "
       >
         <div className="bg-[#E0E6F9] rounded-2xl md:mx-16 text-black max-w-[1320px] mx-auto md:grid grid-cols-2 my-6 overflow-x-hidden">
-          <div className="col-span-1  justify-center items-center mt-11 hidden md:flex pb-6 md:my-16">
+          <div className="col-span-1 flex justify-center items-center  md:flex pb-6 ">
             <img
               src="img2.jpg"
               className="md:w-[500px] w-60"
