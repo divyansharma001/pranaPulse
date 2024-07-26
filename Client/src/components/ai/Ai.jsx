@@ -50,15 +50,28 @@ const Ai = () => {
   };
 
   return (
-    <div className="flex justify-center h-screen">
-      <div className="w-full p-4 bg-[#0584AB] rounded-lg">
+    <div className="flex justify-center h-auto">
+      <div className="w-9/12 p-4 bg-[#0584AB] rounded-lg flex flex-col h-full">
         <h1 className="text-5xl font-bold text-center mb-6 text-white">
           Ask Prana
         </h1>
-        <div className="relative">
+        <div className="flex-grow overflow-y-auto mb-4">
+          {messages.map((message, index) => (
+            <div key={index} className={`mb-4 p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-200 self-end' : 'bg-gray-200 self-start'}`}>
+              {message.content}
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+        {isLoading && (
+          <div className="flex justify-center mt-4">
+            <Loader />
+          </div>
+        )}
+        <div className="relative flex items-center mt-4">
           <textarea
-            className="w-full p-3 border-2 border-[#0584AB] mb-20 rounded-lg resize-none focus:outline-none focus:border-blue-500"
-            rows="5"
+            className="flex-grow p-3 border-2 border-[#0584AB] rounded-lg resize-none focus:outline-none focus:border-blue-500"
+            rows="1"
             placeholder="Message Prana..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -67,26 +80,13 @@ const Ai = () => {
           ></textarea>
 
           <button
-            className="absolute right-2 bottom-2 border-2 border-white bg-[#0584AB] text-white py-1 px-4 mb-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
+            className="ml-2 border-2 border-white bg-[#0584AB] text-white py-1 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
             onClick={sendMessage}
             disabled={isLoading}
           >
             {isLoading ? 'Sending...' : 'Submit'}
           </button>
         </div>
-
-        {isLoading ? (
-          <Loader />
-        ) : messages.length > 0 ? (
-          <div className="mt-10 w-full p-3 border-2 border-[#0584AB] rounded-lg bg-white">
-            {messages.map((message, index) => (
-              <div key={index} className={`mb-4 p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-200' : 'bg-gray-200'}`}>
-                {message.content}
-              </div>
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
-        ) : null}
       </div>
     </div>
   );
