@@ -2,6 +2,37 @@ import { useState, useRef, useEffect } from "react";
 import axios from 'axios';
 import Loader from "../constants/Loader";
 import { motion } from "framer-motion";
+import ReactMarkdown from 'react-markdown';
+import styled from 'styled-components';
+
+const Message = styled.div`
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 70%;
+  ${props => props.isUser ? `
+    background-color: #E0E6F9;
+    color: black;
+    align-self: flex-end;
+    margin-left: auto;
+  ` : `
+    background-color: #f1f0f0;
+    align-self: flex-start;
+  `}
+
+  p {
+    margin: 0 0 10px 0;
+  }
+
+  ul, ol {
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+`;
 
 const Ai = () => {
   const [messages, setMessages] = useState([]);
@@ -24,14 +55,20 @@ const Ai = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/v1/user/chat`, { 
-        userInput: input, 
-        conversationHistory: newMessages 
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/api/v1/user/chat`, {
+        userInput: input,
+        conversationHistory: newMessages
       });
 
+      // Format the response to use Markdown syntax
+      const formattedResponse = response.data.response
+        .replace(/\*\*/g, '**')  // Ensure ** is used for bold
+        .replace(/^-/gm, '- ')   // Ensure proper spacing for bullet points
+        .replace(/\n/g, '\n\n'); // Add extra line breaks for paragraphs
+
       setMessages([
-        ...newMessages, 
-        { role: 'assistant', content: response.data.response }
+        ...newMessages,
+        { role: 'assistant', content: formattedResponse }
       ]);
     } catch (error) {
       console.error('Error:', error);
@@ -59,9 +96,9 @@ const Ai = () => {
           </h1>
           <div className="flex-grow overflow-y-auto mb-4">
             {messages.map((message, index) => (
-              <div key={index} className={`mb-4 p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-200 self-end' : 'bg-gray-200 self-start'}`}>
-                {message.content}
-              </div>
+              <Message key={index} isUser={message.role === 'user'}>
+                <ReactMarkdown>{message.content}</ReactMarkdown>
+              </Message>
             ))}
             <div ref={messagesEndRef} />
           </div>
@@ -70,17 +107,17 @@ const Ai = () => {
               <Loader />
             </div>
           )}
-          <div className="relative flex md:flex-row flex-col items-center  mt-4">
+          <div className="relative flex md:flex-row flex-col items-center mt-4">
             <input
-              className="flex-grow p-3  rounded-lg resize-none focus:outline-none "
-              placeholder="Message Prana..."
+              className="flex-grow p-3 rounded-lg resize-none focus:outline-none"
+              placeholder="What is your problem?"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onClick={handleKeyPress}
+              onKeyPress={handleKeyPress}
               disabled={isLoading}
             />
             <button
-              className="ml-2 border-2 md:mt-0 mt-3 border-white bg-[#E0E6F9] text-black py-1 px-4 rounded-lg hover:bg-green-50 "
+              className="ml-2 border-2 md:mt-0 mt-3 border-white bg-[#E0E6F9] text-black py-1 px-4 rounded-lg hover:bg-green-50"
               onClick={sendMessage}
               disabled={isLoading}
             >
@@ -89,7 +126,7 @@ const Ai = () => {
           </div>
         </div>
       </div>
-
+      
       <motion.div
         initial={{ y: "-100%" }}
         animate={{ y: "100%" }}
@@ -100,13 +137,10 @@ const Ai = () => {
           left: 0,
           width: "100%",
           height: "100vh",
-          backgroundColor: "#E0E6F9 ",
+          backgroundColor: "#E0E6F9",
           zIndex: 20,
         }}
       ></motion.div>
-
-      
-     
     </>
   );
 };

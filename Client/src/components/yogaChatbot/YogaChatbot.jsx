@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 
 const ChatContainer = styled.div`
   max-width: 600px;
@@ -35,6 +36,19 @@ const Message = styled.div`
     background-color: #f1f0f0;
     align-self: flex-start;
   `}
+
+  p {
+    margin: 0 0 10px 0;
+  }
+
+  ul, ol {
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+  }
+
+  strong {
+    font-weight: bold;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -87,9 +101,15 @@ function YogaChatbot() {
         conversationHistory: newMessages 
       });
       
+      // Format the response to use Markdown syntax
+      const formattedResponse = response.data.response
+        .replace(/\*\*/g, '**')  // Ensure ** is used for bold
+        .replace(/^-/gm, '- ')   // Ensure proper spacing for bullet points
+        .replace(/\n/g, '\n\n'); // Add extra line breaks for paragraphs
+
       setMessages([
         ...newMessages, 
-        { role: 'assistant', content: response.data.response }
+        { role: 'assistant', content: formattedResponse }
       ]);
     } catch (error) {
       console.error('Error:', error);
@@ -114,7 +134,7 @@ function YogaChatbot() {
       <MessageList>
         {messages.map((message, index) => (
           <Message key={index} isUser={message.role === 'user'}>
-            {message.content}
+            <ReactMarkdown>{message.content}</ReactMarkdown>
           </Message>
         ))}
         <div ref={messagesEndRef} />
@@ -123,7 +143,7 @@ function YogaChatbot() {
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onClick={handleKeyPress}
+          onKeyPress={handleKeyPress}
           placeholder="Type your message here..."
           disabled={isLoading}
         />
