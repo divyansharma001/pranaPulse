@@ -10,7 +10,7 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: '*',
     credentials: true
 }
 
