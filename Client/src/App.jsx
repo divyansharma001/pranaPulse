@@ -7,7 +7,8 @@ import About from "./components/about/About";
 import Ai from "./components/ai/Ai";
 import Error from "./components/common/errorPage/Error";
 import "./index.css";
-import YogaChatbot from "./components/yogaChatbot/YogaChatbot";
+import PoseVerifier from "./components/poseverifier/Poseverifier";
+
 
 function App() {
   return (
@@ -39,9 +40,10 @@ const appRouter = createBrowserRouter([
         element: <Ai/>,
       },
       {
-        path: "/bot",
-        element: <YogaChatbot />,
+        path: "/model",
+        element: <PoseVerifier />,
       },
+      
     ],
     errorElement: <Error />,
   },
