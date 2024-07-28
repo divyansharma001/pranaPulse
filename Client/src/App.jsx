@@ -8,6 +8,7 @@ import Ai from "./components/ai/Ai";
 import Error from "./components/common/errorPage/Error";
 import "./index.css";
 import PoseVerifier from "./components/poseverifier/Poseverifier";
+import { Analytics } from "@vercel/analytics/react"
 
 
 function App() {
