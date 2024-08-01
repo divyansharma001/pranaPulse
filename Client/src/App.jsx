@@ -9,7 +9,8 @@ import Error from "./components/common/errorPage/Error";
 import "./index.css";
 import PoseVerifier from "./components/poseverifier/Poseverifier";
 import { Analytics } from "@vercel/analytics/react"
-
+import Signin from "./authentication/Signin";
+import Signup from "./authentication/Signup";
 
 function App() {
   return (
@@ -43,6 +44,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/model",
         element: <PoseVerifier />,
+      },
+      {
+        path: "/signin",
+        element: <Signin />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
       
     ],

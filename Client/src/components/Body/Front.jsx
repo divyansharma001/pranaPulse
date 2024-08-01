@@ -85,7 +85,16 @@ const Front = () => {
       >
         <div className="bg-[#E0E6F9] rounded-2xl md:mx-16 text-black max-w-[1320px] mx-auto md:grid grid-cols-2 my-6 overflow-x-hidden">
           <div className="col-span-1 flex justify-center items-center  md:flex pb-6 ">
-            <img
+            <motion.img
+             animate={{
+              y: [0, -50, 0],
+            }}
+            transition={{
+              duration: 2,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "loop",
+            }}
               src="img2.jpg"
               className="md:w-[500px] w-60"
               alt="ai image"
@@ -104,6 +113,9 @@ const Front = () => {
                 <span className="text-[#0884AB]">AI</span>
               </h1>
             </div>
+            <a href="/ai">
+              <div className="border-2 rounded-3xl border-black text-white h-12 w-44 sm:w-auto md:w-56  justify-center font-semibold cursor-pointer sm:ml-2 text-center bg-black text-2xl pt-2 m-auto hover:scale-110 duration-500">Get Started</div>
+            </a>
             <div className="md:text-2xl md:my-24 font-semibold my-7">
               <h1>
                 Talk to our <span className="text-[#0884AB]">AI</span> and get
@@ -132,6 +144,9 @@ const Front = () => {
               lead that healthy life.
             </h1>
           </div>
+          <a href="/signin">
+              <div className="border-2 rounded-3xl border-black text-white h-12 w-44 sm:w-auto md:w-56 sm:mt-10 mt-12 justify-center font-semibold cursor-pointer sm:ml-5 text-center bg-black text-2xl pt-2 m-auto hover:scale-110 duration-500">Explore</div>
+          </a>
         </div>
         <div className="col-span-1 flex justify-center items-center   ">
           <motion.img

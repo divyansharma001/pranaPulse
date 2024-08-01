@@ -80,8 +80,8 @@ const PoseVerifier = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Pose Verifier</h1>
+    <div style={{ textAlign: 'center', padding: '20px' }} className='overflow-hidden'>
+      <h1 className='text-black bg-white border-2 text-2xl font-semibold sm:max-w-96  sm:ml-[550px] sm:mb-10'>Pose Verifier</h1>
       {isLoading ? (
         <p>Loading model...</p>
       ) : (
@@ -93,8 +93,8 @@ const PoseVerifier = () => {
             />
           </div>
           <div style={{ marginTop: '20px' }}>
-            <button onClick={startWebcam} disabled={isClassifying}>Start Webcam</button>
-            <button onClick={stopWebcam} disabled={!isClassifying}>Stop Webcam</button>
+            <button onClick={startWebcam} disabled={isClassifying} className='border-2 rounded-lg bg-white text-black font-semibold text-2xl p-2 sm:mx-5 mx-5 cursor-pointer'>Start</button>
+            <button onClick={stopWebcam} disabled={!isClassifying} className='border-2 rounded-lg bg-white text-black font-semibold text-2xl p-2 sm:mx-5 mx-5 cursor-pointer'>Stop</button>
           </div>
           {prediction && (
             <div style={{ marginTop: '20px' }}>

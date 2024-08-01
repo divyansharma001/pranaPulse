@@ -1,12 +1,20 @@
 import express from "express";
 import Groq from "groq-sdk";
 import dotenv from "dotenv";
-
+import path from 'path'
+const __dirname = path.resolve();
 dotenv.config({
-  path: "../.env",
+  path: "./.env",
 });
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const groqApiKey = process.env.GROQ_API_KEY; // Store the variable
+
+if (!groqApiKey) {
+  console.error("GROQ_API_KEY environment variable not found");
+  process.exit(1); // Exit with an error code if not found
+}
+
+const groq = new Groq({ apiKey: groqApiKey });
 
 export default async function chatController(req, res) {
   try {
