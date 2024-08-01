@@ -84,7 +84,7 @@ const Front = () => {
         className="w-full bg-[#E0E6F9] md:my-20 rounded-2xl mt-0 md:mt-10 "
       >
         <div className="bg-[#E0E6F9] rounded-2xl md:mx-16 text-black max-w-[1320px] mx-auto md:grid grid-cols-2 my-6 overflow-x-hidden">
-          <div className="col-span-1 flex justify-center items-center  md:flex pb-6 ">
+          <div className="col-span-1 flex justify-center items-center  md:flex pb-6 mt-12">
             <motion.img
              animate={{
               y: [0, -50, 0],
